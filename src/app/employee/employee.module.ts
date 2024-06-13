@@ -2,6 +2,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { LeaveRequestComponent } from './leave-request/leave-request.component';
 import { LeaveBalanceComponent } from './leave-balance/leave-balance.component';
 import { LeaveService } from './leave.service';
@@ -9,6 +11,7 @@ import { LeaveService } from './leave.service';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule.forChild([
       { path: 'leave-request', component: LeaveRequestComponent },
       { path: 'leave-balance', component: LeaveBalanceComponent }
@@ -16,6 +19,10 @@ import { LeaveService } from './leave.service';
     LeaveRequestComponent,
     LeaveBalanceComponent
   ],
-  providers: [LeaveService]
+  providers: [
+    LeaveService,
+    provideHttpClient(withInterceptorsFromDi()) 
+
+  ]
 })
 export class EmployeeModule { }
