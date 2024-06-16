@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { LeaveRequestComponent } from './leave-request/leave-request.component';
 import { LeaveBalanceComponent } from './leave-balance/leave-balance.component';
 import { LeaveService } from './leave.service';

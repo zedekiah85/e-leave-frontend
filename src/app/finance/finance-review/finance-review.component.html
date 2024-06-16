@@ -1,0 +1,39 @@
+<div class="finance-review-container">
+    <h2>Finance Department Review</h2>
+  
+    <div *ngIf="paymentRequests.length === 0">
+      No payment requests available for review.
+    </div>
+  
+    <div *ngIf="paymentRequests.length > 0">
+      <ul>
+        <li *ngFor="let request of paymentRequests" (click)="selectRequest(request)">
+          {{ request.employeeName }} - {{ request.amount }} - {{ request.status }}
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="selectedRequest">
+      <h3>Review Payment Request</h3>
+      <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="approval">Approval</label>
+          <select id="approval" formControlName="approval" class="form-control" required>
+            <option value="">Select Approval Status</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label for="comments">Comments</label>
+          <textarea id="comments" formControlName="comments" class="form-control" rows="4"></textarea>
+        </div>
+  
+        <button type="submit" class="btn btn-primary" [disabled]="loading">Submit Review</button>
+      </form>
+  
+      <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+    </div>
+  </div>
+  
