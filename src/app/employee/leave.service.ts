@@ -28,9 +28,17 @@ export class LeaveService {
       );
   }
 
-  // Error handling method
-  private handleError(error: any): Observable<never> {
-    console.error('An error occurred:', error);
-    throw error;
-  }
+    // Method to request payment for leave
+    requestPayment(paymentRequest: any): Observable<any> {
+      return this.http.post<any>(`${this.apiUrl}/request-payment`, paymentRequest)
+        .pipe(
+          catchError(this.handleError)
+        );
+    }
+  
+    // Error handling method
+    private handleError(error: any): Observable<never> {
+      console.error('An error occurred:', error);
+      throw error;
+    }
 }

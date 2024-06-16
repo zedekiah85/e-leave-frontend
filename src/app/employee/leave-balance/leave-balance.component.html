@@ -1,1 +1,41 @@
-<p>leave-balance works!</p>
+<div class="leave-balance-container">
+    <h2>Leave Balances</h2>
+    <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+  
+    <div *ngIf="leaveBalances.length > 0; else noLeaves">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Leave Type</th>
+            <th>Remaining Days</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let leave of leaveBalances">
+            <td>{{ leave.type }}</td>
+            <td>{{ leave.remainingDays }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-template #noLeaves>
+      <p>No leave balances available.</p>
+    </ng-template>
+  
+    <h3>Request Payment</h3>
+    <form [formGroup]="paymentForm" (ngSubmit)="onRequestPayment()">
+      <div class="form-group">
+        <label for="leaveType">Leave Type</label>
+        <select id="leaveType" formControlName="leaveType" class="form-control" required>
+          <option value="">Select Leave Type</option>
+          <option *ngFor="let leave of leaveBalances" [value]="leave.type">{{ leave.type }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="amount">Amount</label>
+        <input type="number" id="amount" formControlName="amount" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="loading">Request Payment</button>
+    </form>
+  </div>
+  
