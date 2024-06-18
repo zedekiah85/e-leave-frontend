@@ -33,6 +33,21 @@ export class PaymentService {
         catchError(this.handleError)
       );
   }
+    // Approve payment request
+    approvePayment(requestId: string): Observable<any> {
+      return this.http.post<any>(`${this.apiUrl}/approve`, { requestId })
+        .pipe(
+          catchError(this.handleError)
+        );
+    }
+  
+    // Reject payment request
+    rejectPayment(requestId: string): Observable<any> {
+      return this.http.post<any>(`${this.apiUrl}/reject`, { requestId })
+        .pipe(
+          catchError(this.handleError)
+        );
+    }
 
   // Error handling method
   private handleError(error: any): Observable<never> {

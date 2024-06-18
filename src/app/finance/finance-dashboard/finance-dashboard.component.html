@@ -1,0 +1,33 @@
+<div class="finance-dashboard-container">
+    <h2>Finance Dashboard</h2>
+  
+    <div *ngIf="loading" class="loading">Loading payment requests...</div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+  
+    <div *ngIf="!loading && !error">
+      <table>
+        <thead>
+          <tr>
+            <th>Request ID</th>
+            <th>Employee ID</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let request of paymentRequests">
+            <td>{{ request.id }}</td>
+            <td>{{ request.employeeId }}</td>
+            <td>{{ request.amount }}</td>
+            <td>{{ request.date }}</td>
+            <td>
+              <button (click)="approvePayment(request.id)" class="btn btn-success">Approve</button>
+              <button (click)="rejectPayment(request.id)" class="btn btn-danger">Reject</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
