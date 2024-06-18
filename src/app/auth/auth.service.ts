@@ -26,4 +26,18 @@ export class AuthService {
       map(response => response)
     );
   }
+  getEmployeeId(): string {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const employeeId = user?.id;
+
+    if (!employeeId) {
+      throw new Error('Employee ID not found');
+    }
+
+    return employeeId;
+  }
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+  }
 }

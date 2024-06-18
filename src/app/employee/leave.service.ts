@@ -27,6 +27,12 @@ export class LeaveService {
         catchError(this.handleError)
       );
   }
+  getLeaveBalance(employeeId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/balance/${employeeId}`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
 
     // Method to request payment for leave
     requestPayment(paymentRequest: any): Observable<any> {

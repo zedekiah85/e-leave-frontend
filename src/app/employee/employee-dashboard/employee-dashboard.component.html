@@ -1,1 +1,39 @@
-<p>employee-dashboard works!</p>
+<div class="employee-dashboard-container">
+    <h2>Employee Dashboard</h2>
+  
+    <div *ngIf="error" class="error">{{ error }}</div>
+  
+    <div *ngIf="leaveBalance">
+      <h3>Leave Balance</h3>
+      <p>Annual Leave: {{ leaveBalance.annual }}</p>
+      <p>Sick Leave: {{ leaveBalance.sick }}</p>
+      <p>Unpaid Leave: {{ leaveBalance.unpaid }}</p>
+    </div>
+  
+    <div>
+      <h3>Leave Requests</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let request of leaveRequests">
+            <td>{{ request.type }}</td>
+            <td>{{ request.startDate }}</td>
+            <td>{{ request.endDate }}</td>
+            <td>{{ request.status }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <div>
+      <button routerLink="/employee/leave-request" class="btn btn-primary">Submit Leave Request</button>
+    </div>
+  </div>
+  

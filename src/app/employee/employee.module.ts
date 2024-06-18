@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashboard.component';
 import { LeaveRequestComponent } from './leave-request/leave-request.component';
 import { LeaveBalanceComponent } from './leave-balance/leave-balance.component';
 import { LeaveService } from './leave.service';
@@ -13,6 +14,7 @@ import { LeaveService } from './leave.service';
     CommonModule,
     FormsModule,
     RouterModule.forChild([
+      { path: 'employee-dashboard', component: EmployeeDashboardComponent },
       { path: 'leave-request', component: LeaveRequestComponent },
       { path: 'leave-balance', component: LeaveBalanceComponent }
     ]),
