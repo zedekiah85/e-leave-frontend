@@ -5,7 +5,7 @@
         <label for="username">Username</label>
         <input type="text" id="username" required [(ngModel)]="loginData.username" name="username" #username="ngModel">
         <div *ngIf="username.invalid && (username.dirty || username.touched)" class="error">
-          Username is required
+          Username is required please input
         </div>
       </div>
       
